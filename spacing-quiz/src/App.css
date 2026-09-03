@@ -1,0 +1,241 @@
+@import url("https://cdn.jsdelivr.net/gh/MonadABXY/mona-font/web/mona.css");
+
+* {
+  box-sizing: border-box;
+  font-family: 'Mona12', sans-serif;
+}
+
+/* 1. 화면 전체(100vh) 높이 확보 및 중앙 정렬 설정 */
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  margin-top: -30px;
+  margin-bottom: -20px;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;     /* 수직(세로) 중앙 정렬 */
+  background-color: #ffffff;
+  font-family: 'Mona12', sans-serif;
+}
+
+.App {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+
+/* ================== Pixel Logo 스타일 ================== */
+.pixel-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px; /* 로고와 카드 사이의 여백 */
+}
+
+.logo-img {
+  width: 180px; /* 💡 피그마에서 확인한 로고의 가로 크기(px)로 맞춰주세요! */
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ================== Quiz Card 스타일 ================== */
+.quiz-card {
+  width: 450px;
+  height: 250px;
+  background-color: #e6e6e6; /* Card background color */
+  border: 2.5px solid #000000;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Common Card Content Styles */
+.title-text,
+.question-counter,
+.score-display,
+.problem-text,
+.feedback-text,
+.timer-text,
+.pixel-button,
+.pixel-input {
+  font-family: inherit;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Start Card Styles */
+.card-content-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.title-text {
+  font-size: 18px;
+}
+
+.subtitle-text {
+  font-size: 13px;
+  color: #333;
+}
+
+/* Playing Card Styles */
+.card-content-playing {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Problem Text Container */
+.problem-text-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+
+.problem-text {
+  font-size: 16px;
+  text-align: left;
+  white-space: pre-wrap; /* Preserve leading spaces if any */
+}
+
+/* Input Area 및 버튼 그룹 스타일 */
+.input-area,
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.button-group {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.timer-text {
+  font-size: 12px;
+}
+
+/* Pixel Input 스타일 */
+.pixel-input {
+  width: 100%;
+  height: 35px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  padding: 0 10px;
+  font-size: 14px;
+  outline: none;
+  border-radius: 0; /* Squared edges */
+}
+
+/* 정답/오답 피드백 스타일 (Blue & Red) */
+.pixel-input.correct {
+  border-color: #2e5cff; /* Blue outline */
+  color: #2e5cff;
+}
+
+.pixel-input.incorrect {
+  border-color: #ff3333; /* Red outline */
+  color: #ff3333;
+}
+
+/* Pixel Button 스타일 */
+.pixel-button {
+  width: 90px;
+  height: 30px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 0; /* Squared edges */
+}
+
+.pixel-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Feedback Overlay 스타일 */
+.feedback-overlay {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.feedback-text {
+  font-size: 15px;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.feedback-text.correct {
+  color: #2e5cff;
+}
+
+.feedback-text.incorrect {
+  color: #ff3333;
+}
+/* 오답 안내용 정답 텍스트 스타일 */
+.correct-answer-guide {
+  font-size: 13px;
+  color: #333333;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-family: inherit;
+}
+
+.correct-answer-guide span {
+  color: #2e5cff; /* 정답 문장은 파란색으로 강조 */
+  font-weight: bold;
+}
+/* 최종 결과 화면 스타일 */
+.reset-notice-text {
+  font-size: 11px;
+  color: #2e5cff;
+  margin: 0;
+}
+
+.remaining-count-text {
+  font-size: 11px;
+  color: #888888;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.pixel-button.large {
+  width: 110px;
+  height: 35px;
+  font-size: 14px;
+}
