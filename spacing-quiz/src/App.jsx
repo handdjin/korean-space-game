@@ -148,7 +148,7 @@ export default function App() {
       <div className="main-content">
         {/* 상단 픽셀 로고 */}
         <div className="pixel-logo-container">
-          <img src="/logo.svg" alt="로고" className="logo-img" />
+          <img src="./logo.svg" alt="로고" className="logo-img" />
         </div>
 
         {/* 메인 퀴즈 카드 */}
