@@ -61,7 +61,7 @@ const QUIZ_DATA = [
   { problem: '여행을하면서새로운친구를사귀었다.', answer: '여행을 하면서 새로운 친구를 사귀었다.' },
   { problem: '다음에는가족과함께오고싶다.', answer: '다음에는 가족과 함께 오고 싶다.' },
   { problem: '오랜만에친구들과즐거운시간을보냈다.', answer: '오랜만에 친구들과 즐거운 시간을 보냈다.' },
-  { problem: '오늘하루도정말즐거웠다.', answer: '오늘 하루도 정말 즐거웠다.' },
+  { problem: '오늘하루도정말즐거웠다.', answer: '오늘 하루도 정말 즐거웠다.' }
 ];
 
 export default function App() {
