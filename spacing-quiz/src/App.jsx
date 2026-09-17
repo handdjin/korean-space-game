@@ -8,7 +8,7 @@ const QUIZ_DATA = [
   { problem: '한국어는어렵지만재밌다.', answer: '한국어는 어렵지만 재밌다.' },
   { problem: '밥은먹고다니냐.', answer: '밥은 먹고 다니냐.' },
   { problem: '그때그사람이보고싶다.', answer: '그때 그 사람이 보고 싶다.' },
-  { problem: '너언제시간돼?.', answer: '너 언제 시간 돼?' },
+  { problem: '너언제시간돼?', answer: '너 언제 시간 돼?' },
   { problem: '세시에거기서만나자.', answer: '세 시에 거기서 만나자.' },
   { problem: '나는그사람을매우사랑해.', answer: '나는 그 사람을 매우 사랑해.' },
   { problem: '내일은일찍학교에가야해.', answer: '내일은 일찍 학교에 가야 해.' },
