@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
-// 퀴즈 데이터셋 (원하는 만큼 자유롭게 추가 가능합니다)
+// 퀴즈 데이터셋
 const QUIZ_DATA = [
   { problem: '오늘도열심히공부했다.', answer: '오늘도 열심히 공부했다.' },
   { problem: '아버지가방에들어가신다.', answer: '아버지가 방에 들어가신다.' },
@@ -65,41 +65,34 @@ const QUIZ_DATA = [
 ];
 
 export default function App() {
-  const [gameState, setGameState] = useState('start'); // 'start' | 'playing' | 'result' | 'ending'
+  const [gameState, setGameState] = useState('start');
   const [score, setScore] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   
-  // 💡 안 푼 문제들을 보관하는 문제 은행 state
   const [unseenQuestions, setUnseenQuestions] = useState([...QUIZ_DATA]);
-  const [isPoolReset, setIsPoolReset] = useState(false); // 리셋 알림 플래그
+  const [isPoolReset, setIsPoolReset] = useState(false);
 
   const [userInput, setUserInput] = useState('');
-  const [feedback, setFeedback] = useState(null); // 'correct' | 'incorrect'
+  const [feedback, setFeedback] = useState(null);
   const [timer, setTimer] = useState(5);
 
   const inputRef = useRef(null);
 
-  // 게임 시작 및 안 푼 문제에서 무작위 추출
   const handleStartGame = () => {
     let pool = [...unseenQuestions];
     let resetNotice = false;
 
-    // 만약 안 푼 남은 문제가 없다면 전체 데이터셋에서 다시 리셋
     if (pool.length === 0) {
       pool = [...QUIZ_DATA];
       resetNotice = true;
     }
 
-    // 안 푼 문제 무작위 셔플
     const shuffledPool = pool.sort(() => Math.random() - 0.5);
-
-    // 한 판당 출제할 문제 수 (예: 5개씩 추출)
     const ROUND_SIZE = 5; 
     const currentRoundQuestions = shuffledPool.slice(0, ROUND_SIZE);
     const remainingPool = shuffledPool.slice(ROUND_SIZE);
 
-    // 상태 업데이트
     setUnseenQuestions(remainingPool);
     setShuffledQuestions(currentRoundQuestions);
     setIsPoolReset(resetNotice);
@@ -111,7 +104,6 @@ export default function App() {
     setFeedback(null);
   };
 
-  // 띄어쓰기 정제 함수
   const normalizeText = (text) => {
     let cleaned = text.trim().replace(/\s+/g, ' ');
     if (cleaned.endsWith('.')) {
@@ -120,7 +112,6 @@ export default function App() {
     return cleaned;
   };
 
-  // 다음 문제로 이동 (마지막 문제면 최종 결과 화면으로!)
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < shuffledQuestions.length) {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -128,12 +119,10 @@ export default function App() {
       setFeedback(null);
       setGameState('playing');
     } else {
-      // 💡 이번 판의 모든 문제를 다 풀었으면 최종 결과 화면으로 이동
       setGameState('ending');
     }
   };
 
-  // 제출 처리
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -159,7 +148,6 @@ export default function App() {
     setTimer(5);
   };
 
-  // 결과 화면 타이머 & Space 키 감지
   useEffect(() => {
     if (gameState !== 'result') return;
 
@@ -188,7 +176,6 @@ export default function App() {
     };
   }, [gameState, currentQuestionIndex, shuffledQuestions]);
 
-  // 문제 화면 포커스
   useEffect(() => {
     if (gameState === 'playing') {
       setTimeout(() => inputRef.current?.focus(), 50);
@@ -200,14 +187,11 @@ export default function App() {
   return (
     <div className="App">
       <div className="main-content">
-        {/* 상단 픽셀 로고 */}
         <div className="pixel-logo-container">
           <img src="./logo.svg" alt="로고" className="logo-img" />
         </div>
 
-        {/* 메인 퀴즈 카드 */}
         <div className="quiz-card">
-          {/* 1. 시작 화면 */}
           {gameState === 'start' && (
             <div className="card-content-start">
               <h2 className="title-text">띄어쓰기 퀴즈</h2>
@@ -218,7 +202,6 @@ export default function App() {
             </div>
           )}
 
-          {/* 2. 문제 입력 화면 */}
           {gameState === 'playing' && (
             <div className="card-content-playing">
               <div className="card-header">
@@ -246,7 +229,6 @@ export default function App() {
             </div>
           )}
 
-          {/* 3. 문제별 정답 / 오답 피드백 화면 */}
           {gameState === 'result' && (
             <div className="card-content-playing">
               <div className="card-header">
@@ -282,7 +264,6 @@ export default function App() {
             </div>
           )}
 
-          {/* 4. 💡 최종 점수 / 퀴즈 종료 화면 */}
           {gameState === 'ending' && (
             <div className="card-content-start">
               <h2 className="title-text">🎉 퀴즈 종료!</h2>
